@@ -1,17 +1,21 @@
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Image, Button} from 'react-native';
 import React from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Navbar = () => {
   return (
     <View>
-      <View style={style.sibling}>
-        <AntDesign name="bars" color="white" size={25} />
+      <View style={style.container}>
+        <View>
+          <Ionicons style={{color: 'white' }} name="chevron-back-outline" color="white" size={28} />
+        </View>
+
+        <Text style={style.siblingText}>SMIT</Text>
+
+        <View>{<AntDesign style={{color: 'white' }} name="profile" color="white" size={28} />}</View>
       </View>
-
-      <Text>SMIT</Text>
-
-      <View>{ <AntDesign name="bars" color="white" size={22} /> }</View>
+      
     </View>
   );
 };
@@ -19,15 +23,18 @@ const Navbar = () => {
 export default Navbar;
 
 const style = StyleSheet.create({
-  sibling: {
+ 
+  siblingText: {
     color: 'white',
-    margin: 10,
+    fontSize: 18,
+    fontWeight: 'bold',
   },
   container: {
-    padding: 20,
-    backgroundColor: 'blue',
-    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'skyblue',
+    padding: 13,
   },
 });
