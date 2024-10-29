@@ -47,6 +47,14 @@ const style = StyleSheet.create({
     color: 'black',
   },
   header: {
+    shadowColor: '#000',
+    shadowOffset: {
+        width: 6,
+        height: 6,
+    },
+    shadowOpacity: 0.01,
+    shadowRadius: 4,
+    elevation: 5,
     alignItems: 'center',
     flexDirection: 'row',
     backgroundColor: 'white',
