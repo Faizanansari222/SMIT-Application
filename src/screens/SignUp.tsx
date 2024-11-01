@@ -2,27 +2,28 @@ import {
   View,
   Text,
   TouchableOpacity,
-  TextInput,
   Button,
-  ScrollView,
+  TextInput,
   StatusBar,
 } from 'react-native';
 import React, {useState} from 'react';
 import Navbar from '../component/Navbar';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-const Login = (props: any) => {
-  const [email, setEmail] = useState('');
+const SignUp = (props: any) => {
   const {navigation} = props;
+  const [userName, setUserName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   return (
     <View style={{flex: 1}}>
       <StatusBar backgroundColor="skyblue" />
       <Navbar
-        heading="Student Login"
+        heading="Student Registration"
         icon=""
         backIcon={
           <TouchableOpacity
-            onPress={() => navigation.navigate('Home')}
+            onPress={() => navigation.navigate('Login')}
             activeOpacity={0.5}>
             <View style={{backgroundColor: 'skyblue'}}>
               {
@@ -86,41 +87,48 @@ const Login = (props: any) => {
               placeholderTextColor={'#dbdbdb'}
               placeholder="Enter password"
             />
-            <TouchableOpacity
-              activeOpacity={0.5}
-              style={{alignSelf: 'flex-end'}}>
-              <Text style={{color: 'gray', fontSize: 12}}>
-                Forgot Password?
-              </Text>
-            </TouchableOpacity>
           </View>
-          <View style={{marginTop: 30}}>
+          <View >
+            <TextInput
+              style={{
+                padding: 10,
+                borderRadius: 8,
+                width: 280,
+                borderColor: '#dbdbdb',
+                borderWidth: 1,
+                color: 'black',
+              }}
+              secureTextEntry
+              autoCorrect={false}
+              placeholderTextColor={'#dbdbdb'}
+              placeholder="Enter password"
+            />
+          </View>
+          <View style={{marginTop: 35}}>
             <Button color={'skyblue'} title="Login" />
           </View>
-          <View style={{flexDirection: 'row', color: 'gray', alignItems: 'center', justifyContent: 'center' }}>
-            <Text style={{color: 'gray', alignSelf: 'center'}}>
-              Don't have an account?{' '}
-              <TouchableOpacity
-              style={{alignSelf: 'center', marginTop: 5, backgroundColor: 'blue', }}
-                onPress={() => navigation.navigate('SignUp')}
-                activeOpacity={0.5}>
-                <View>
-                  <Text
-                    style={{
-                      color: 'skyblue',
-                      fontWeight: 'bold',
-                      textDecorationLine: 'underline',
-                    }}>
-                    Sign Up
-                  </Text>
-                </View>
-              </TouchableOpacity>
+          <Text style={{color: 'gray', alignSelf: 'center'}}>
+            You have already an account?{' '}
+            <TouchableOpacity
+            onPress={() => navigation.navigate('Login')}
+            activeOpacity={0.5}>
+            <View>
+            <Text
+              style={{
+                color: 'skyblue',
+                fontWeight: 'bold',
+                textDecorationLine: 'underline',
+              }}>
+              Login
             </Text>
-          </View>
+            </View>
+          </TouchableOpacity>
+            
+          </Text>
         </View>
       </View>
     </View>
   );
 };
 
-export default Login;
+export default SignUp;
