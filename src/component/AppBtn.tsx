@@ -1,13 +1,15 @@
-import {View, Text, StyleSheet, TouchableHighlight} from 'react-native';
+import {View, Text, StyleSheet, TouchableHighlight, TouchableOpacity} from 'react-native';
 import React from 'react';
 
 const AppBtn = (props: any) => {
   const {title, color} = props;
   return (
     <View style={style.main}>
-      <TouchableHighlight>
-        <Text style={[style.btn]}>{title}</Text>
-      </TouchableHighlight>
+      
+      <TouchableOpacity activeOpacity={0.8}>
+        <Text style={style.btn}>{title}</Text>
+        </TouchableOpacity>
+
     </View>
   );
 };
@@ -17,6 +19,7 @@ const style = StyleSheet.create({
     flex: 1,
   },
   btn: {
+    color:"white",
     width: 150,
     paddingVertical: 6,
     textAlign: 'center',

@@ -1,21 +1,30 @@
-import {View, Text, StyleSheet, Image, Button} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import React from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-const Navbar = () => {
+const Navbar = (props:any) => {
+  const {navigate, heading, icon, backIcon} = props;
   return (
     <View>
       <View style={style.container}>
-        <View>
-          <Ionicons style={{color: 'white' }} name="chevron-back-outline" color="white" size={28} />
+        {/* <TouchableOpacity activeOpacity={0.5}>
+          <View>
+            <Ionicons
+              style={{color: 'white'}}
+              name="chevron-back-outline"
+              color="white"
+              size={28}
+            />
+          </View>
+        </TouchableOpacity> */}
+        {backIcon}
+
+        <Text style={style.siblingText}>{heading}</Text>
+        <View style={{width: 30}}>
+          {icon}
         </View>
-
-        <Text style={style.siblingText}>SMIT</Text>
-
-        <View>{<AntDesign style={{color: 'white' }} name="profile" color="white" size={28} />}</View>
       </View>
-      
     </View>
   );
 };
@@ -23,7 +32,6 @@ const Navbar = () => {
 export default Navbar;
 
 const style = StyleSheet.create({
- 
   siblingText: {
     color: 'white',
     fontSize: 18,

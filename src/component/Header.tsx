@@ -1,23 +1,24 @@
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
 import AppBtn from './AppBtn';
 
-const Header = (props:any) => {
-    const {heading, durations, imgUrl} = props
+const Header = (props: any) => {
+  const {heading, durations, imgUrl} = props;
   return (
     <View>
       <View style={style.header}>
         <View>
           <Text style={style.headerTextH1}>{heading}</Text>
           <Text style={style.headerTextP1}>Durations {durations}</Text>
-          <AppBtn title="Apply Now" color="skyblue" />
+          
+            <Text>
+              <AppBtn title="Apply Now" color="skyblue" />
+            </Text>
+         
           {/* <Button  title="Apply Now" /> */}
         </View>
         <View>
-          <Image
-            style={{width: 150, height: 150}}
-            source={imgUrl}
-          />
+          <Image style={{width: 150, height: 150}} source={imgUrl} />
         </View>
       </View>
     </View>
@@ -35,7 +36,7 @@ const style = StyleSheet.create({
     width: 180,
     fontSize: 13,
     marginVertical: 5,
-    fontWeight: '300',
+    fontWeight: '400',
     color: 'gray',
   },
   headerTextH1: {
@@ -49,8 +50,8 @@ const style = StyleSheet.create({
   header: {
     shadowColor: '#000',
     shadowOffset: {
-        width: 6,
-        height: 6,
+      width: 6,
+      height: 6,
     },
     shadowOpacity: 0.01,
     shadowRadius: 4,
@@ -58,7 +59,8 @@ const style = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     backgroundColor: 'white',
-    marginVertical: 40,
+    marginVertical: 20,
+    marginTop: 40,
     margin: 8,
     padding: 15,
     borderRadius: 10,
