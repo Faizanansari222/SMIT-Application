@@ -12,8 +12,35 @@ import Navbar from '../component/Navbar';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Login = (props: any) => {
-  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
+  const [password, setPassword] = useState('');
   const {navigation} = props;
+
+  const handleLogin = async () => {
+    const data ={
+      name: name,
+      password: password
+    }
+    try {
+      console.log(data);
+      
+      const response = await fetch('http://192.168.1.13/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+    
+
+      // console.log("Data Goes to database successfully",response);
+      // console.log(respose);
+    } catch (error: any) {
+      console.log('error aaraha he ---->', error.message);
+    }
+
+    // navigation.navigate('Dashboard')
+  };
   return (
     <View style={{flex: 1}}>
       <StatusBar backgroundColor="skyblue" />
@@ -59,7 +86,8 @@ const Login = (props: any) => {
         }}>
         <View style={{gap: 15}}>
           <TextInput
-            onChangeText={e => setEmail(e)}
+            value={name}
+            onChangeText={setName}
             style={{
               padding: 10,
               borderRadius: 8,
@@ -73,6 +101,8 @@ const Login = (props: any) => {
           />
           <View style={{gap: 5}}>
             <TextInput
+              value={password}
+              onChangeText={setPassword}
               style={{
                 padding: 10,
                 borderRadius: 8,
@@ -95,7 +125,7 @@ const Login = (props: any) => {
             </TouchableOpacity>
           </View>
           <View style={{marginTop: 30}}>
-            <Button  onPress={() => navigation.navigate('Dashboard')} color={'skyblue'} title="Login" />
+            <Button onPress={()=>handleLogin()} color={'skyblue'} title="Login" />
           </View>
           <View
             style={{
@@ -110,7 +140,8 @@ const Login = (props: any) => {
                 alignItems: 'center',
               }}>
               <View>
-                <Text style={{color: 'gray', alignSelf: 'center',fontSize: 13}}>
+                <Text
+                  style={{color: 'gray', alignSelf: 'center', fontSize: 13}}>
                   Don't have an account?{' '}
                 </Text>
               </View>
