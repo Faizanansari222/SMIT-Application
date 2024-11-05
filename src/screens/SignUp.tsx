@@ -5,6 +5,7 @@ import {
   Button,
   TextInput,
   StatusBar,
+  Alert,
 } from 'react-native';
 import React, {useState} from 'react';
 import Navbar from '../component/Navbar';
@@ -15,6 +16,31 @@ const SignUp = (props: any) => {
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const handleSubmit = async() => {
+
+    if (userName && email && password) {
+      await Alert.alert('Account created successfully');
+      navigation.navigate('Login');
+
+    } else {
+      Alert.alert('Please fill all the fields');
+    }
+
+    // fetch('http://localhost:4009/addproduct', {
+    //   method: 'POST',
+    //   headers: {
+    //     Accept: 'application/json',
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({
+    //     userName,
+    //     email,
+    //     password,
+    //   }),
+    // });
+  };
+
   return (
     <View style={{flex: 1}}>
       <StatusBar backgroundColor="skyblue" />
@@ -60,7 +86,7 @@ const SignUp = (props: any) => {
         }}>
         <View style={{gap: 15}}>
           <TextInput
-            onChangeText={e => setEmail(e)}
+            onChangeText={e => setUserName(e)}
             style={{
               padding: 10,
               borderRadius: 8,
@@ -70,10 +96,11 @@ const SignUp = (props: any) => {
               color: 'black',
             }}
             placeholderTextColor={'#dbdbdb'}
-            placeholder="Enter your email"
+            placeholder="set username"
           />
           <View style={{gap: 5}}>
             <TextInput
+              onChangeText={e => setEmail(e)}
               style={{
                 padding: 10,
                 borderRadius: 8,
@@ -82,14 +109,14 @@ const SignUp = (props: any) => {
                 borderWidth: 1,
                 color: 'black',
               }}
-              secureTextEntry
               autoCorrect={false}
               placeholderTextColor={'#dbdbdb'}
-              placeholder="Enter password"
+              placeholder="enter your email"
             />
           </View>
-          <View >
+          <View>
             <TextInput
+              onChangeText={e => setPassword(e)}
               style={{
                 padding: 10,
                 borderRadius: 8,
@@ -101,30 +128,37 @@ const SignUp = (props: any) => {
               secureTextEntry
               autoCorrect={false}
               placeholderTextColor={'#dbdbdb'}
-              placeholder="Enter password"
+              placeholder="set password"
             />
           </View>
           <View style={{marginTop: 35}}>
-            <Button color={'skyblue'} title="Login" />
+            <Button onPress={handleSubmit} color={'skyblue'} title="Register" />
           </View>
-          <Text style={{color: 'gray', alignSelf: 'center'}}>
-            You have already an account?{' '}
-            <TouchableOpacity
-            onPress={() => navigation.navigate('Login')}
-            activeOpacity={0.5}>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
             <View>
-            <Text
-              style={{
-                color: 'skyblue',
-                fontWeight: 'bold',
-                textDecorationLine: 'underline',
-              }}>
-              Login
-            </Text>
+              <Text style={{color: 'gray', alignSelf: 'center', fontSize: 13}}>
+                You have already an account?{' '}
+              </Text>
             </View>
-          </TouchableOpacity>
-            
-          </Text>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('Login')}
+              activeOpacity={0.5}>
+              <Text
+                style={{
+                  color: 'skyblue',
+                  fontWeight: 'bold',
+                  fontSize: 13,
+                  textDecorationLine: 'underline',
+                }}>
+                Login
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </View>

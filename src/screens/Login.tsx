@@ -95,27 +95,46 @@ const Login = (props: any) => {
             </TouchableOpacity>
           </View>
           <View style={{marginTop: 30}}>
-            <Button color={'skyblue'} title="Login" />
+            <Button  onPress={() => navigation.navigate('Dashboard')} color={'skyblue'} title="Login" />
           </View>
-          <View style={{flexDirection: 'row', color: 'gray', alignItems: 'center', justifyContent: 'center' }}>
-            <Text style={{color: 'gray', alignSelf: 'center'}}>
-              Don't have an account?{' '}
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+            <View
+              style={{
+                flexDirection: 'row',
+                gap: 2,
+                alignItems: 'center',
+              }}>
+              <View>
+                <Text style={{color: 'gray', alignSelf: 'center',fontSize: 13}}>
+                  Don't have an account?{' '}
+                </Text>
+              </View>
               <TouchableOpacity
-              style={{alignSelf: 'center', marginTop: 5, backgroundColor: 'blue', }}
+                style={{
+                  alignSelf: 'center',
+                  marginTop: 5,
+                  padding: 0,
+                  margin: 0,
+                }}
                 onPress={() => navigation.navigate('SignUp')}
                 activeOpacity={0.5}>
-                <View>
-                  <Text
-                    style={{
-                      color: 'skyblue',
-                      fontWeight: 'bold',
-                      textDecorationLine: 'underline',
-                    }}>
-                    Sign Up
-                  </Text>
-                </View>
+                <Text
+                  style={{
+                    paddingBottom: 5,
+                    color: 'skyblue',
+                    fontSize: 13,
+                    fontWeight: 'bold',
+                    textDecorationLine: 'underline',
+                  }}>
+                  Sign Up
+                </Text>
               </TouchableOpacity>
-            </Text>
+            </View>
           </View>
         </View>
       </View>
