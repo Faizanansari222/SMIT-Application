@@ -4,6 +4,7 @@ import {
   Text,
   TouchableOpacity,
   StatusBar,
+  FlatList,
 } from 'react-native';
 import React from 'react';
 import Navbar from '../component/Navbar';
@@ -16,9 +17,56 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Courses from '../component/Courses';
 
 const Home = (props: any) => {
+  const DATA = {
+    courses: [
+      {
+        id: 1,
+        heading: 'Graphic Desiging Course',
+        durations: '2 months',
+        imgUrl: require('../assets/artistic_tools1.png'),
+      },
+      {
+        id: 2,
+        heading: 'Web Development Course',
+        durations: '6 months',
+        imgUrl: require('../assets/web_course.png'),
+      },
+      {
+        id: 3,
+        heading: 'App Development Course',
+        durations: '4 months',
+        imgUrl: require('../assets/app_develop.png'),
+      },
+    ],
+    UpcommingEvent: [
+      {
+        id: 4,
+        heading: 'Admission Open For 360 Sales Markiting',
+        imgUrl: require('../assets/UpcommingEvent/360markitingsales.jpg'),
+        Date: 'Tuesday 12 March 2022',
+      },
+      {
+        id: 5,
+        heading: 'Entrance Exam Cloud Data Engineering',
+        Date: 'Tuesday 12 March 2022',
+        imgUrl: require('../assets/UpcommingEvent/cloud_en'),
+      },
+      {
+        id: 6,
+        heading: 'Techno Kids Batch 06 Orientation',
+        Date: 'Tuesday 12 March 2022',
+        imgUrl: require('../assets/UpcommingEvent/technoKidsBatch06.jpg'),
+        function: {
+          onPress: () => {
+            console.log('pressed');
+          },
+        },
+      },
+    ],
+  };
   const {navigation} = props;
   return (
-    <View>
+    <View style={{flex: 1}}>
       <ScrollView>
         <StatusBar backgroundColor="skyblue" />
 
@@ -43,24 +91,25 @@ const Home = (props: any) => {
               </TouchableOpacity>
             }
           />
-          <View style={{paddingLeft: 8, justifyContent: 'center'}}>
-            <ScrollView horizontal showsHorizontalScrollIndicator={true}>
-              <Header
-                heading="Graphic Desiging Course"
-                durations="2 months"
-                imgUrl={require('../assets/artistic-tools1.png')}
-              />
-              <Header
-                heading="Graphic Desiging Course"
-                durations="2 months"
-                imgUrl={require('../assets/artistic-tools1.png')}
-              />
-              <Header
-                heading="Graphic Desiging Course"
-                durations="2 months"
-                imgUrl={require('../assets/artistic-tools1.png')}
-              />
-            </ScrollView>
+          <View
+            style={{
+              margin: 5,
+              alignItems: 'center',
+              width: '100%',
+              justifyContent: 'center',
+            }}>
+            <FlatList
+              data={DATA.courses}
+              horizontal={true}
+              renderItem={({item}) => (
+                <Header
+                  heading={item.heading}
+                  durations={item.durations}
+                  imgUrl={item.imgUrl}
+                />
+              )}
+              // keyExtractor={item => item.id}
+            />
           </View>
         </View>
         <View>
@@ -85,17 +134,10 @@ const Home = (props: any) => {
               style={{color: 'black', fontSize: 29, fontWeight: 'bold'}}
               name="chevron-forward-outline"
               color="white"
-              size={28}
             />
           </View>
-          <ScrollView horizontal showsHorizontalScrollIndicator={true}>
-            <UpcommingEvent />
-            <UpcommingEvent />
-            <UpcommingEvent />
-            <UpcommingEvent />
-            <UpcommingEvent />
-            <UpcommingEvent />
-            <UpcommingEvent />
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            <UpcommingEvent eventData={DATA.UpcommingEvent} />
           </ScrollView>
         </View>
         <View

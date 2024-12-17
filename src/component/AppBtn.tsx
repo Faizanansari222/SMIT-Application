@@ -2,11 +2,11 @@ import {View, Text, StyleSheet, TouchableHighlight, TouchableOpacity} from 'reac
 import React from 'react';
 
 const AppBtn = (props: any) => {
-  const {title, color} = props;
+  const {title, fun} = props;
   return (
     <View style={style.main}>
       
-      <TouchableOpacity activeOpacity={0.8}>
+      <TouchableOpacity activeOpacity={0.8} onPress={fun}>
         <Text style={style.btn}>{title}</Text>
         </TouchableOpacity>
 
@@ -20,6 +20,7 @@ const style = StyleSheet.create({
   },
   btn: {
     color:"white",
+    padding:10,
     width: 150,
     paddingVertical: 6,
     textAlign: 'center',
